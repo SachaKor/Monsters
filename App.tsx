@@ -1,77 +1,41 @@
-import React, {Component} from 'react';
-import {StyleSheet, TouchableOpacity, Text, View, TouchableHighlight, Image} from 'react-native';
-import Images from './Images';
+import * as React from 'react';
+import { View, Text, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './HomeScreen';
+import Monster from './Monster';
 
-class App extends Component {
-  state = {
-    headNumber: 1,
-    bodyNumber: 2,
-    legsNumber: 3,
-  };
+// function HomeScreen({ navigation } : {navigation: any}) {
+//   return (
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Text>Home Screen</Text>
+//       <Button
+//         title="Go to Details"
+//         onPress={() => navigation.navigate('Details')}
+//       />
+//     </View>
+//   );
+// }
 
-
-  onPressHead = () => {
-    const newHeadNumber = 1+(this.state.headNumber + 1)%3;
-    this.setState({
-      headNumber: newHeadNumber,
-    })
-  }
-
-  onPressBody = () => {
-    const newBodyNumber = 1+(this.state.bodyNumber + 1)%3;
-    this.setState({
-      bodyNumber: newBodyNumber,
-    })
-  }
-
-  onPressLegs = () => {
-    const newLegsNumber = 1+(this.state.legsNumber + 1)%3;
-    this.setState({
-      legsNumber: newLegsNumber,
-    })
-  }
-
-
-  render() {
-
-    const head = Images.GetImage(
-      `${this.state.headNumber}.png`,
-    );
-    
-    const body = Images.GetImage(
-      `${this.state.bodyNumber}.png`,
-    );
-
-    const legs = Images.GetImage(
-      `${this.state.legsNumber}.png`,
-    );
-
-    return (
-      <View style={styles.container}>
-        <TouchableHighlight style={styles.img} onPress={this.onPressHead}>
-          <Image  source={head} />
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.img} onPress={this.onPressBody}>
-          <Image source={body} />
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.img} onPress={this.onPressLegs}>
-          <Image  source={legs} />
-        </TouchableHighlight>
-      </View>
-    );
-  }
+function DetailsScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Details Screen</Text>
+    </View>
+  );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-  },
-  img: {
-    flex: 1,
-  },
-});
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Monster" component={Monster} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 
 export default App;
