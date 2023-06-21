@@ -1,40 +1,63 @@
 import React, {Component, useState} from 'react';
-import {StyleSheet, View, TouchableHighlight, Image} from 'react-native';
+import {StyleSheet, View, Image, SafeAreaView, FlatList} from 'react-native';
 import Images from './Images';
+
+
+const DATA = [
+  {
+    id: '1',
+    image: Images.GetImage(`1.gif`),
+  },
+  {
+    id: '2',
+    image: Images.GetImage(`2.gif`),
+  },
+  {
+    id: '3',
+    image: Images.GetImage(`3.gif`),
+  }
+]
+
+type ItemProps = typeof DATA[0];
+
+const Item = ({image}: any) => (
+  <View style={styles.item}>
+    <Image style={styles.image} source={image}/>
+  </View>
+);
+
+function SwipingImage() {
+
+  const renderItem = ({ item }: { item: ItemProps }) => (
+    <Item image={item.image} />
+  );
+
+  return (
+    <SafeAreaView style={styles.container1}>
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+      />
+    </SafeAreaView>
+  )
+}
 
 function Monster() {
 
-    const [headNumber, setHeadNumber] = useState(1);
-    const [bodyNumber, setBodyNumber] = useState(2);
-    const [legsNumber, setLegsNumber] = useState(3)
+  const renderItem = ({ item }: { item: ItemProps }) => (
+    <Item image={item.image} />
+  );
 
-    const head = Images.GetImage(
-        `${headNumber}.png`,
-    );
-
-    const body = Images.GetImage(
-        `${bodyNumber}.png`,
-    );
-
-    const legs = Images.GetImage(
-        `${legsNumber}.png`,
-    );
-
-
-
-    return (
-      <View style={styles.container}>
-        <TouchableHighlight style={styles.img} onPress={() => setHeadNumber(1+(headNumber + 1)%3)}>
-          <Image  source={head} />
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.img} onPress={() => setBodyNumber(1+(bodyNumber + 1)%3)}>
-          <Image source={body} />
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.img} onPress={() => setLegsNumber(1+(legsNumber + 1)%3)}>
-          <Image  source={legs} />
-        </TouchableHighlight>
-      </View>
-    );
+  return (
+    <View style={styles.container}>
+      <SwipingImage/>
+      <SwipingImage/>
+      <SwipingImage/>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -45,7 +68,29 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
     img: {
+      height: '100%',
+      width: '100%',
+    },
+    imgcontainer: {
         flex: 1,
+        height: '100%',
+        width: '100%',
+        alignItems: 'center',
+    },
+    container1: {
+      flex: 1,
+    },
+    item: {
+      backgroundColor: "#ffffff",
+      padding: 20,
+      marginVertical: 8,
+      marginHorizontal: 16,
+      height: 200,
+      width: 350,
+      alignItems: 'center'
+    },
+    image: {
+      flex: 1,
     },
 });
 

@@ -6,16 +6,16 @@ interface Image {
 class Images {
     private static images: Array<Image> = [
         {
-            name: '1.png',
-            image: require('./img/1.png')
+            name: '1.gif',
+            image: require('./img/1.gif')
         },
         {
-            name: '2.png', 
-            image: require('./img/2.png')
+            name: '2.gif', 
+            image: require('./img/2.gif')
         },
         {
-            name: '3.png',
-            image: require('./img/3.png')
+            name: '3.gif',
+            image: require('./img/3.gif')
         }
     ]
 
