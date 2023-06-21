@@ -9,28 +9,28 @@ function Monster() {
     const [legsNumber, setLegsNumber] = useState(3)
 
     const head = Images.GetImage(
-        `${headNumber}.png`,
+        `${headNumber}.gif`,
     );
 
     const body = Images.GetImage(
-        `${bodyNumber}.png`,
+        `${bodyNumber}.gif`,
     );
 
     const legs = Images.GetImage(
-        `${legsNumber}.png`,
+        `${legsNumber}.gif`,
     );
 
 
 
     return (
       <View style={styles.container}>
-        <TouchableHighlight style={styles.img} onPress={() => setHeadNumber(1+(headNumber + 1)%3)}>
+        <TouchableHighlight style={styles.imgcontainer} onPress={() => setHeadNumber(1+(headNumber + 1)%3)}>
           <Image  source={head} />
         </TouchableHighlight>
-        <TouchableHighlight style={styles.img} onPress={() => setBodyNumber(1+(bodyNumber + 1)%3)}>
+        <TouchableHighlight style={styles.imgcontainer} onPress={() => setBodyNumber(1+(bodyNumber + 1)%3)}>
           <Image source={body} />
         </TouchableHighlight>
-        <TouchableHighlight style={styles.img} onPress={() => setLegsNumber(1+(legsNumber + 1)%3)}>
+        <TouchableHighlight style={styles.imgcontainer} onPress={() => setLegsNumber(1+(legsNumber + 1)%3)}>
           <Image  source={legs} />
         </TouchableHighlight>
       </View>
@@ -45,7 +45,14 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
     img: {
+      height: '100%',
+      width: '100%',
+    },
+    imgcontainer: {
         flex: 1,
+        height: '100%',
+        width: '100%',
+        alignItems: 'center',
     },
 });
 
