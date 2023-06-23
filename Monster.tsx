@@ -1,55 +1,19 @@
 import React, {Component, useState} from 'react';
 import {StyleSheet, View, Image, SafeAreaView, FlatList} from 'react-native';
-import Images from './Images';
+import Images from './utils/Images';
+import CarouselComponent from './Carousel';
 
-
-const DATA = [
-  {
-    id: '1',
-    image: Images.GetImage(`1.gif`),
-  },
-  {
-    id: '2',
-    image: Images.GetImage(`2.gif`),
-  },
-  {
-    id: '3',
-    image: Images.GetImage(`3.gif`),
-  }
-]
-
-type ItemProps = typeof DATA[0];
-
-const Item = ({image}: any) => (
-  <View style={styles.item}>
-    <Image style={styles.image} source={image}/>
-  </View>
-);
 
 function SwipingImage() {
 
-  const renderItem = ({ item }: { item: ItemProps }) => (
-    <Item image={item.image} />
-  );
-
   return (
     <SafeAreaView style={styles.container1}>
-      <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-      />
+      <CarouselComponent/>
     </SafeAreaView>
   )
 }
 
 function Monster() {
-
-  const renderItem = ({ item }: { item: ItemProps }) => (
-    <Item image={item.image} />
-  );
 
   return (
     <View style={styles.container}>
@@ -83,8 +47,6 @@ const styles = StyleSheet.create({
     item: {
       backgroundColor: "#ffffff",
       padding: 20,
-      marginVertical: 8,
-      marginHorizontal: 16,
       height: 200,
       width: 350,
       alignItems: 'center'
