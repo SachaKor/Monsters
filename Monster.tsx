@@ -1,8 +1,7 @@
-import React, {Component, useState} from 'react';
-import {StyleSheet, View, Image, SafeAreaView, FlatList} from 'react-native';
-import Images from './utils/Images';
+import React from 'react';
+import {StyleSheet, View, SafeAreaView} from 'react-native';
 import CarouselComponent from './Carousel';
-
+import { Stack, FAB, Icon } from "@react-native-material/core";
 
 function SwipingImage() {
 
@@ -19,7 +18,7 @@ function Monster() {
     <View style={styles.container}>
       <SwipingImage/>
       <SwipingImage/>
-      <SwipingImage/>
+      <SwipingImage/>  
     </View>
   );
 }
