@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, SafeAreaView} from 'react-native';
 import CarouselComponent from './Carousel';
-import { Stack, FAB, Icon } from "@react-native-material/core";
+import LikeFab from './LikeFab';
 
 function SwipingImage() {
 
@@ -19,6 +19,7 @@ function Monster() {
       <SwipingImage/>
       <SwipingImage/>
       <SwipingImage/>  
+      <LikeFab/>
     </View>
   );
 }
